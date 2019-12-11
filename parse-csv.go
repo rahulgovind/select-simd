@@ -80,7 +80,12 @@ func ExtractCsv(bitMask []uint64, raw []byte, rowIndices []uint32) (result []byt
 			//	break
 			//}
 
-			buf = append(buf, raw[rowIndices[index-1]+1:rowIndices[index]-1]...)
+			start := uint32(0)
+			if index != 0 {
+				start = rowIndices[index-1]+1
+			}
+			buf = append(buf, raw[start:rowIndices[index]-1]...)
+
 			buf = append(buf, 0x0)
 		}
 	}
