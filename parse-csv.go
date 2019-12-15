@@ -47,7 +47,7 @@ func ExtractCsv(bitMask []uint64, raw []byte, rowIndices []uint32) (result []byt
 	rows := count64(bitMask)
 
 	avgPerRow := uint64(len(raw) / len(rowIndices))
-	appendChar := byte("\n")
+	appendChar := byte(0x0a)
 	buf := make([]byte, 0, rows*avgPerRow*5/4)
 	if bitMask[0]&1 != 0 {
 		buf = append(buf, raw[0:rowIndices[0]-1]...)
